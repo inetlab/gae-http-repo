@@ -1,0 +1,2 @@
+serviceClass: com.onpositive.repo.client.GreetingService
+path: D68FF9B1B280019EB85D2DB7CFF49543.gwt.rpc
