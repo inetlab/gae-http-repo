@@ -14,16 +14,16 @@ public class Repository {
 	private final Auth auth;
 	URL login;
 	
-	HttpRetriever retriever = new SimpleHttpRetriever();
+	HttpRetrieverFactory factory = null;
 	
-	public Repository(URL base, RepoType type, Auth auth, URL login) {
-		this.base = base;
+	public Repository(String base, RepoType type, Auth auth, String login) throws MalformedURLException {
+		this.base = new URL(base);
 		this.type = type;
 		this.auth = auth;
-		this.login = login;
+		this.login = login == null? null : new URL(this.base, login);
 	}
 	
-	public Repository(URL url) {
+	public Repository(String url) throws MalformedURLException {
 		this(url, RepoType.Plain, null, null);
 	}
 
@@ -52,8 +52,13 @@ public class Repository {
   
 	public String get(String path) throws IOException {
 		URL url = buildUrl(path);
+		HttpRetriever retriever = factory.create();
 		String text = retriever.retrieve(url, auth, login);
 		return text;
+	}
+	
+	public void setFactory(HttpRetrieverFactory factory) {
+		this.factory = factory;
 	}
 	
 }
