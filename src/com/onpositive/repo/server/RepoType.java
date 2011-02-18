@@ -2,9 +2,10 @@ package com.onpositive.repo.server;
 
 public class RepoType {
 
-	public static final RepoType Plain = new RepoType();
-	public static final RepoType GitHub = new RepoType("/raw/master");
+	public static final RepoType Plain 		= new RepoType();
+	public static final RepoType GitHub 	= new RepoType("/raw/master");
 	public static final RepoType Assembla = new RepoType("/browser", "?format=txt");
+	public static final RepoType Trac 		= new RepoType("/browser", "?format=txt");
 	
 	String prefix;
 	String suffix;
