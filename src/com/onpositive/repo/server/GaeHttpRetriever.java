@@ -50,6 +50,12 @@ public class GaeHttpRetriever extends HttpRetriever {
 		List<HTTPHeader> responseHeaders = response.getHeaders();
 		int code = response.getResponseCode();
 		System.out.println("Result: " + code);
+		System.out.println("<Headers>");
+		for(HTTPHeader h: responseHeaders) {
+			System.out.println("  RESPONSE HEADER: " + h.getName() + " = " + h.getValue());
+		}
+		System.out.println("</Headers>");
+		System.out.println("Response body: " + new String(response.getContent()));
 		if(code != 200 && code != 302) return null;
 		if(header != null) {
 			text = findHeader(responseHeaders, header);
